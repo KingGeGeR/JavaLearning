@@ -1,6 +1,3 @@
-/**
- * 
- */
 package algorithm;
 
 /**
@@ -26,7 +23,7 @@ public class Sort {
 		}
 	 }
 	
-	/*@
+	/**@
 	 * 从上往下的沉底
 	 */
 	public static void BubbleSort2(int[] arr){
@@ -251,6 +248,43 @@ public class Sort {
 			arr[0]=arr[i];
 			arr[i]=tmp;
 			MaxHeapAdjust(arr,0,i);
+		}
+	}
+	
+	/*
+	 * 基数排序
+	 * @Sort.RadixSort(arr, new int[arr.length], arr.length, 4, 10,new int[10]);
+	 */
+	public static void RadixSort(int arr[],int temp[],int n,int k,int r,int cnt[]){
+
+		// A:原数组
+		// temp:临时数组
+		// n:序列的数字个数
+		// k:最大的位数2
+		// r:基数10
+		// cnt:存储bin[i]的个数
+
+		for (int i = 0, rtok = 1; i < k; i++, rtok = rtok * r) {
+
+			// 初始化
+			for (int j = 0; j < r; j++) {
+				cnt[j] = 0;
+			}
+			// 计算每个箱子的数字个数
+			for (int j = 0; j < n; j++) {
+				cnt[(arr[j] / rtok) % r]++;
+			}
+			// cnt[j]的个数修改为前j个箱子一共有几个数字,用来计数元素应该存放的位置
+			for (int j = 1; j < r; j++) {
+				cnt[j] = cnt[j - 1] + cnt[j];
+			}
+			for (int j = n - 1; j >= 0; j--) { // 重点理解，倒着来因为，计数减减，也因为FIFO
+				cnt[(arr[j] / rtok) % r]--;
+				temp[cnt[(arr[j] / rtok) % r]] = arr[j];
+			}
+			for (int j = 0; j < n; j++) {
+				arr[j] = temp[j];//temp覆盖arr数组
+			}
 		}
 	}
 	
