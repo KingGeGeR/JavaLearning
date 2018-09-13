@@ -2,6 +2,10 @@ package algorithm;
 
 import datastu.BinaryTree;
 
+import jzof_ex.Jxof_10_2;
+import jzof_ex.Jzof_12;
+import jzof_ex.Jzof_13;
+
 public class TestMain {
 
 	public static void main(String[] args) {
@@ -11,6 +15,10 @@ public class TestMain {
 		Sort.PrintSort(arr);
 		datastu.BinaryTree<Object> bt=new datastu.BinaryTree<Object>();
 		bt.testTree();
+		char[] matrix= "ABCESFCSADEE".toCharArray();
+		char[] str="ABCB".toCharArray();
+		Jzof_13 test=new Jzof_13();
+		System.out.println(test.movingCount(5, 10, 10));
 	}
 
 }
